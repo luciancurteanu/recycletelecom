@@ -93,8 +93,17 @@ variant-selects {
 }
 
 .product-form__input--pill input[type='radio']:checked + label {
-  background-color: rgb(var(--color-foreground));
-  color: rgb(var(--color-background));
+  background-color: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+}
+
+.product-form__input--pill input[type='radio'].disabled + label,
+.product-form__input--pill input[type='radio']:disabled + label {
+  background-color: rgb(var(--color-background));
+  border-color: rgba(var(--color-foreground), 0.1);
+  color: rgba(var(--color-foreground), 0.6);
+  text-decoration: line-through;
 }
 
 @media screen and (forced-colors: active) {
@@ -121,7 +130,8 @@ variant-selects {
 
 .product-form__input--pill input[type='radio'].disabled:checked + label,
 .product-form__input--pill input[type='radio']:disabled:checked + label {
-  color: rgba(var(--color-background), 0.6);
+  background-color: rgb(var(--color-background));
+  color: rgba(var(--color-foreground), 0.6);
 }
 .product-form__input--pill input[type='radio']:focus-visible + label {
   box-shadow: 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0 0.5rem rgba(var(--color-foreground), 0.55);
