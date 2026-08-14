@@ -26,6 +26,7 @@ if (!customElements.get('product-info')) {
         );
 
         this.initQuantityHandlers();
+        queueMicrotask(() => this.setQuantityBoundries());
         this.dispatchEvent(new CustomEvent('product-info:loaded', { bubbles: true }));
       }
 
@@ -335,20 +336,36 @@ if (!customElements.get('product-info')) {
         };
 
         let min = data.min;
-        const max = data.max === null ? data.max : data.max - data.cartQuantity;
+        const max = data.max;
         if (max !== null) min = Math.min(min, max);
         if (data.cartQuantity >= data.min) min = Math.min(min, data.step);
 
         this.quantityInput.min = min;
 
-        if (max) {
+        if (max !== null) {
           this.quantityInput.max = max;
         } else {
           this.quantityInput.removeAttribute('max');
         }
-        this.quantityInput.value = min;
+        this.quantityInput.value = data.cartQuantity > 0 ? data.cartQuantity : min;
+
+        this.updateAddToCartState(data);
 
         publish(PUB_SUB_EVENTS.quantityUpdate, undefined);
+      }
+
+      updateAddToCartState({ max, cartQuantity }) {
+        if (max === null || Number.isNaN(max)) return;
+        const submitButton = this.productForm?.querySelector('[type="submit"]');
+        if (!submitButton) return;
+
+        const atInventoryLimit = cartQuantity >= max;
+        submitButton.disabled = atInventoryLimit;
+        if (atInventoryLimit) {
+          submitButton.setAttribute('aria-disabled', 'true');
+        } else {
+          submitButton.removeAttribute('aria-disabled');
+        }
       }
 
       fetchQuantityRules() {
@@ -368,7 +385,6 @@ if (!customElements.get('product-info')) {
 
       updateQuantityRules(sectionId, html) {
         if (!this.quantityInput) return;
-        this.setQuantityBoundries();
 
         const quantityFormUpdated = html.getElementById(`Quantity-Form-${sectionId}`);
         const selectors = ['.quantity__input', '.quantity__rules', '.quantity__label'];
@@ -403,6 +419,8 @@ if (!customElements.get('product-info')) {
             }
           }
         }
+
+        this.setQuantityBoundries();
       }
 
       get productForm() {

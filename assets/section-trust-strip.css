@@ -1,0 +1,110 @@
+.trust-strip {
+  --trust-accent: #5a31f4;
+  --trust-ink: #101828;
+  --trust-muted: #667085;
+  --trust-border: rgba(16, 24, 40, 0.12);
+  background: #f4f6fa;
+}
+
+.trust-strip__inner {
+  display: grid;
+  grid-template-columns: minmax(24rem, 0.8fr) minmax(0, 1.6fr);
+  gap: 7rem;
+  align-items: start;
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+.trust-strip__eyebrow {
+  margin: 0 0 1.4rem;
+  color: var(--trust-accent);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.trust-strip h2 {
+  max-width: 36rem;
+  margin: 0;
+  color: var(--trust-ink);
+  font-size: clamp(3rem, 4vw, 5rem);
+  letter-spacing: -0.05em;
+  line-height: 0.98;
+}
+
+.trust-strip__text {
+  max-width: 34rem;
+  margin-top: 2rem;
+  color: var(--trust-muted);
+}
+
+.trust-strip__items {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--trust-border);
+}
+
+.trust-strip__item {
+  display: grid;
+  grid-template-columns: 3.2rem 1fr;
+  gap: 1.2rem;
+  padding: 2.2rem 1rem 2.2rem 0;
+  border-bottom: 1px solid var(--trust-border);
+}
+
+.trust-strip__item:nth-child(odd) {
+  margin-right: 2.4rem;
+  border-right: 1px solid var(--trust-border);
+}
+
+.trust-strip__number {
+  color: var(--trust-accent);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.trust-strip__item h3 {
+  margin: 0;
+  color: var(--trust-ink);
+  font-size: 1.7rem;
+  letter-spacing: -0.02em;
+}
+
+.trust-strip__item p {
+  margin: 0.7rem 0 0;
+  color: var(--trust-muted);
+  font-size: 1.4rem;
+  line-height: 1.45;
+}
+
+@media screen and (max-width: 749px) {
+  .trust-strip__inner {
+    display: block;
+    padding-top: 4.8rem;
+    padding-bottom: 4.8rem;
+  }
+
+  .trust-strip__items {
+    margin-top: 3.2rem;
+  }
+
+  .trust-strip__item {
+    grid-template-columns: 2.4rem 1fr;
+    gap: 0.8rem;
+    padding-top: 1.8rem;
+    padding-bottom: 1.8rem;
+  }
+
+  .trust-strip__item:nth-child(odd) {
+    margin-right: 1.2rem;
+  }
+
+  .trust-strip__item h3 {
+    font-size: 1.5rem;
+  }
+
+  .trust-strip__item p {
+    font-size: 1.3rem;
+  }
+}

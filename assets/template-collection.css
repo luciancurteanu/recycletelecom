@@ -97,3 +97,190 @@
 .collection__view-all a:not(.link) {
   margin-top: 1rem;
 }
+
+/* Retail collection layout */
+collection-component .product-grid-container {
+  padding-top: 1.5rem;
+}
+
+collection-component .facets-wrapper {
+  margin-bottom: 1rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+collection-component .facets-container {
+  align-items: center;
+  padding: 1rem 1.2rem;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.1);
+  border-radius: 1.2rem;
+  background: rgb(var(--color-background));
+}
+
+collection-component .facets__wrapper {
+  gap: 0.8rem;
+  align-self: center;
+}
+
+collection-component .facets__form {
+  align-items: center;
+  margin-bottom: 0;
+}
+
+collection-component .facets__heading {
+  margin: 0 0.4rem 0 0;
+  color: rgba(var(--color-foreground), 0.55);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+collection-component .facets__disclosure {
+  margin: 0;
+}
+
+collection-component .facets__summary {
+  margin: 0;
+  padding: 0.8rem 1.2rem;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.12);
+  border-radius: 999px;
+  background: #f7f8fb;
+  color: rgb(var(--color-foreground));
+  font-size: 1.3rem;
+}
+
+collection-component .facet-filters {
+  align-self: center;
+  padding-left: 1rem;
+}
+
+collection-component .facets__form .product-count {
+  align-self: center;
+}
+
+collection-component .facet-filters__sort {
+  padding: 0.8rem 2.8rem 0.8rem 1.2rem !important;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.12) !important;
+  border-radius: 999px !important;
+  background: #f7f8fb !important;
+}
+
+@media screen and (min-width: 750px) {
+  collection-component .facets__form {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr auto auto;
+  }
+
+  collection-component .facets__wrapper {
+    grid-column: 1;
+    justify-self: start;
+    width: auto;
+  }
+
+  collection-component .active-facets-desktop:empty {
+    display: none;
+  }
+
+  collection-component .facet-filters {
+    grid-column: 2;
+    justify-self: end;
+    width: auto;
+    padding-left: 0;
+  }
+
+  collection-component .facet-filters__field {
+    justify-content: center;
+  }
+
+  collection-component .facets__form .product-count {
+    grid-column: 3;
+    justify-self: end;
+    width: auto;
+  }
+
+  collection-component .facets__summary,
+  collection-component .facet-filters__sort {
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+  }
+
+  collection-component .facets__summary {
+    padding: 1rem 1.8rem;
+    background: transparent;
+  }
+
+  collection-component .facet-filters__sort {
+    min-width: 19rem;
+    padding: 1rem 4.2rem 1rem 1.8rem !important;
+    background: transparent !important;
+    appearance: none;
+  }
+
+  collection-component .facet-filters__sort:focus,
+  collection-component .facet-filters__sort:focus-visible {
+    outline: 0 !important;
+    box-shadow: none !important;
+  }
+}
+
+collection-component .product-grid {
+  column-gap: 1.6rem;
+  row-gap: 1.6rem;
+}
+
+collection-component .product-grid .grid__item {
+  flex: 0 0 calc(25% - 1.2rem);
+  max-width: calc(25% - 1.2rem);
+}
+
+collection-component .pagination-wrapper {
+  margin-top: 3.5rem;
+  padding-bottom: 2rem;
+}
+
+@media screen and (max-width: 749px) {
+  collection-component .product-grid-container {
+    padding-top: 0.5rem;
+  }
+
+  collection-component .facets-wrapper {
+    margin-bottom: 0.5rem;
+  }
+
+  collection-component .facets-container {
+    padding: 0.8rem;
+    border-radius: 1rem;
+  }
+
+  collection-component .mobile-facets__open-wrapper {
+    min-height: 3.8rem;
+    padding: 0.8rem 1.2rem;
+    border: 0.1rem solid rgba(var(--color-foreground), 0.12);
+    border-radius: 999px;
+    background: #f7f8fb;
+  }
+
+  collection-component .product-count {
+    align-self: center;
+    margin: 0;
+  }
+
+  collection-component .mobile-facets__open {
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+
+  collection-component .product-grid {
+    column-gap: 0.8rem;
+    row-gap: 0.8rem;
+  }
+
+  collection-component .product-grid .grid__item {
+    flex-basis: calc(50% - 0.4rem);
+    max-width: calc(50% - 0.4rem);
+  }
+}

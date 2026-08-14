@@ -39,6 +39,50 @@
         "show_text_below": false
       }
     },
+    "trust_strip": {
+      "type": "trust-strip",
+      "settings": {
+        "heading": "A smarter way to shop tech",
+        "text": "<p>Find the right device for your budget, with a clearer and more considered way to shop.</p>",
+        "color_scheme": "scheme-1"
+      },
+      "blocks": {
+        "compare": {
+          "type": "benefit",
+          "settings": {
+            "heading": "Compare clearly",
+            "text": "Straightforward product information."
+          }
+        },
+        "value": {
+          "type": "benefit",
+          "settings": {
+            "heading": "Find better value",
+            "text": "Shop across popular devices and price points."
+          }
+        },
+        "purpose": {
+          "type": "benefit",
+          "settings": {
+            "heading": "Choose with purpose",
+            "text": "Give great technology a second life."
+          }
+        },
+        "help": {
+          "type": "benefit",
+          "settings": {
+            "heading": "We are here to help",
+            "text": "Contact us when you need a hand."
+          }
+        }
+      },
+      "block_order": [
+        "compare",
+        "value",
+        "purpose",
+        "help"
+      ]
+    },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
@@ -70,6 +114,7 @@
   },
   "order": [
     "image_banner",
+    "trust_strip",
     "featured_collection"
   ]
 }

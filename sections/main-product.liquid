@@ -112,6 +112,7 @@
                       product: product,
                       use_variant: true,
                       show_badges: true,
+                      show_currency: false,
                       price_class: 'price--large'
                     -%}
                   </div>
@@ -193,11 +194,7 @@
                     {%- endif -%}
                   </p>
                 {%- when 'description' -%}
-                  {%- if product.description != blank -%}
-                    <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
-                      {{ product.description }}
-                    </div>
-                  {%- endif -%}
+                  {% comment %} Rendered below the two-column product layout. {% endcomment %}
                 {%- when 'sku' -%}
                   <p
                     class="product__sku{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %}"
@@ -280,13 +277,16 @@
                           data-cart-quantity="{{ cart_qty }}"
                           data-min="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
                           min="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
+                          {% assign inventory_qty = product.selected_or_first_available_variant.inventory_quantity %}
                           {% if product.selected_or_first_available_variant.quantity_rule.max != null %}
-                            data-max="{{ product.selected_or_first_available_variant.quantity_rule.max }}"
-                            max="{{ product.selected_or_first_available_variant.quantity_rule.max }}"
+                            {% assign effective_max = product.selected_or_first_available_variant.quantity_rule.max
+                              | at_most: inventory_qty
+                            %}
+                          {% else %}
+                            {% assign effective_max = inventory_qty %}
                           {% endif %}
-                          step="{{ product.selected_or_first_available_variant.quantity_rule.increment }}"
-                          value="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
-                          form="{{ product_form_id }}"
+                          data-max="{{ effective_max }}"
+                          max="{{ effective_max }}"
                         >
                         <button class="quantity__button" name="plus" type="button">
                           <span class="visually-hidden">
@@ -697,6 +697,18 @@
           </section>
         </div>
       </div>
+
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'description' and product.description != blank -%}
+          <div class="product__description-full-width rte quick-add-hidden" {{ block.shopify_attributes }}>
+            <div class="product__description-full-width-inner">
+              <span class="product__description-eyebrow">Why you’ll love it</span>
+              <h2>Built to be enjoyed again.</h2>
+              {{ product.description }}
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
 
       {% render 'product-media-modal', variant_images: variant_images %}
 

@@ -309,6 +309,119 @@
   margin-bottom: 0;
 }
 
+/* Retail product cards: consistent proportions and aligned information. */
+.collection--featured-retail .grid__item {
+  display: flex;
+}
+
+.collection--featured-retail product-component {
+  display: block;
+  width: 100%;
+}
+
+.collection--featured-retail .product-card-wrapper,
+.collection--featured-retail .card {
+  width: 100%;
+}
+
+.collection--featured-retail .card {
+  min-height: 0;
+  overflow: hidden;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.12);
+  border-radius: 1.6rem;
+  background: rgb(var(--color-background));
+  box-shadow: 0 0.6rem 2rem rgba(var(--color-foreground), 0.07);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.collection--featured-retail .card:hover {
+  transform: translateY(-0.4rem);
+  box-shadow: 0 1.2rem 3rem rgba(var(--color-foreground), 0.13);
+}
+
+.collection--featured-retail .card__inner {
+  flex: 0 0 auto;
+  aspect-ratio: 1 / 1;
+  height: auto !important;
+  background: rgb(var(--color-background));
+}
+
+.collection--featured-retail .card__inner::before {
+  display: none;
+  padding-bottom: 0;
+}
+
+.collection--featured-retail .card__media {
+  background: #f5f6f8;
+}
+
+.collection--featured-retail .card__media .media img {
+  object-fit: contain;
+  padding: 1.8rem;
+}
+
+.collection--featured-retail .card > .card__content {
+  flex: 1 1 auto;
+  min-height: 8rem;
+  padding: 0;
+}
+
+.collection--featured-retail .card > .card__content > .card__information {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+  padding: 1.2rem 1.4rem 1.4rem;
+}
+
+.collection--featured-retail .card__heading {
+  min-height: 0;
+  font-size: 1.7rem;
+  line-height: 1.35;
+}
+
+.collection--featured-retail .card > .card__content .card-information {
+  width: 100%;
+  margin-top: 0;
+}
+
+.collection--featured-retail .price {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.collection--featured-retail .price--on-sale .price-item--regular {
+  color: rgba(var(--color-foreground), 0.5);
+  font-size: 1.4rem;
+}
+
+.collection--featured-retail .card__badge {
+  margin: 1.2rem !important;
+}
+
+@media screen and (max-width: 749px) {
+  .collection--featured-retail .card__media .media img {
+    padding: 1rem;
+  }
+
+  .collection--featured-retail .card__information {
+    padding: 1rem 1rem 1.1rem;
+  }
+
+  .collection--featured-retail .card__heading {
+    min-height: 0;
+    font-size: 1.5rem;
+  }
+
+  .collection--featured-retail .card > .card__content {
+    min-height: 7.5rem;
+  }
+
+  .collection--featured-retail .card {
+    min-height: 29.5rem;
+  }
+}
+
 .card--horizontal .card__heading,
 .card--horizontal .price__container .price-item,
 .card--horizontal__quick-add {

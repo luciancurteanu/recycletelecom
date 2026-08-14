@@ -1,0 +1,85 @@
+{{ 'section-trust-strip.css' | asset_url | stylesheet_tag }}
+
+<section class="trust-strip color-{{ section.settings.color_scheme }} gradient" aria-label="Why shop with us">
+  <div class="trust-strip__inner page-width">
+    <div class="trust-strip__intro">
+      <p class="trust-strip__eyebrow">SHOP WITH CONFIDENCE</p>
+      <h2>{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}
+        <div class="trust-strip__text rte">{{ section.settings.text }}</div>
+      {%- endif -%}
+    </div>
+    <ul class="trust-strip__items list-unstyled" role="list">
+      {%- for block in section.blocks -%}
+        <li class="trust-strip__item" {{ block.shopify_attributes }}>
+          <span class="trust-strip__number">0{{ forloop.index }}</span>
+          <div>
+            <h3>{{ block.settings.heading }}</h3>
+            {%- if block.settings.text != blank -%}
+              <p>{{ block.settings.text }}</p>
+            {%- endif -%}
+          </div>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Trust strip",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A smarter way to shop tech"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Find the right device for your budget, with a clearer and more considered way to shop.</p>"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Compare clearly"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Straightforward product information."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust strip",
+      "blocks": [
+        { "type": "benefit", "settings": { "heading": "Compare clearly", "text": "Straightforward product information." } },
+        { "type": "benefit", "settings": { "heading": "Find better value", "text": "Shop across popular devices and price points." } },
+        { "type": "benefit", "settings": { "heading": "Choose with purpose", "text": "Give great technology a second life." } },
+        { "type": "benefit", "settings": { "heading": "We are here to help", "text": "Contact us when you need a hand." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
